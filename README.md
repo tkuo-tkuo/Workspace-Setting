@@ -1,2 +1,2 @@
 # Workspace Setting Repo.
-There are configuration files used frequently  
+Here are configuration files/scripts used frequently for Idler myself. 
