@@ -1,3 +1,20 @@
+# Clear before executing any command
+preexec () {
+  clear
+}
+preexec_invoke_exec () {
+    [ -n "$COMP_LINE" ] && return                     # do nothing if completing
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
+    local this_command=`history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g"`; # obtain the command from the history, removing the history number at the beginning
+    preexec "$this_command"
+}
+trap 'preexec_invoke_exec' DEBUG
+
+# Git
+alias gls='git status'
+alias gitGraph='git log --graph --all --oneline --decorate'
+alias gitRemoteBranchListRefresh='git remote update origin --prune'
+
 # General (tkuo) 
 alias home='cd /home/denpo60606/'
 alias work='cd /work/denpo60606/'
